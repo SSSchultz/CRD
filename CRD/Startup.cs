@@ -1,4 +1,5 @@
 using CRD.Data;
+using CRD.Data.Dtos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,6 +30,8 @@ namespace CRD
         public void ConfigureServices(IServiceCollection services)
         {
 
+            services.AddDbContext<Usuario_mensagemContext>(opts => opts.UseMySQL(Configuration.GetConnectionString("MensagemConnection")));
+            services.AddDbContext<UsuariosContext>(opts => opts.UseMySQL(Configuration.GetConnectionString("MensagemConnection")));
             services.AddDbContext<MensagensContext>(opts => opts.UseMySQL(Configuration.GetConnectionString("MensagemConnection")));
             services.AddControllers();
             services.AddSwaggerGen(c =>
